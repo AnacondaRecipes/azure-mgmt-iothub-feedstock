@@ -10,7 +10,7 @@ source:
   sha256: 091f19a2917b5b486d87c88e04662a90520666233d870746aee70284d6556204
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: true  # [py<39]
 
@@ -27,7 +27,7 @@ requirements:
     - azure-common >=1.1
     - azure-mgmt-core >=1.6.0
 
-tests:
+test:
   imports:
     - azure.mgmt.iothub
     - azure.mgmt.iothub.aio
