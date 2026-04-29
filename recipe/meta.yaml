@@ -1,0 +1,52 @@
+{% set name = "azure-mgmt-iothub" %}
+{% set version = "5.0.0b1" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/azure_mgmt_iothub-{{ version }}.tar.gz
+  sha256: 091f19a2917b5b486d87c88e04662a90520666233d870746aee70284d6556204
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<39]
+
+requirements:
+  host:
+    - setuptools
+    - wheel
+    - python
+    - pip
+  run:
+    - python
+    - isodate >=0.6.1
+    - typing_extensions >=4.6.0
+    - azure-common >=1.1
+    - azure-mgmt-core >=1.6.0
+
+tests:
+  imports:
+    - azure.mgmt.iothub
+    - azure.mgmt.iothub.aio
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/Azure/azure-sdk-for-python
+  summary: Microsoft Azure IoT Hub Management Client Library for Python
+  license: MIT
+  license_file: LICENSE
+  license_family: MIT
+  description: |
+    This is the Microsoft Azure IoT Hub Management Client Library.
+  doc_url: https://github.com/Azure/azure-sdk-for-python
+  dev_url: https://github.com/Azure/azure-sdk-for-python
+
+extra:
+  recipe-maintainers:
+    - janjagusch
